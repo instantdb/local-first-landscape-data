@@ -2,40 +2,103 @@
 import { LandscapeSchema } from '@localfirstfm/landscape-schema'
 
 export const data = LandscapeSchema.make({
-	Version: 1,
-	Id: 'supersync',
-	Name: 'SuperSync',
-	Description: 'A cool way to sync data',
-	Website: 'https://supersync.cool',
-	Deployment: ['Self-hosted'],
-	License: 'MIT',
-	AppTarget: {
-		LanguageSDK: { data: ['typescript'] },
-	},
-	Networking: {
-		Topology: { data: 'Client-Server' },
-	},
-	ServerSideData: {
-		PersistenceMechanism: { data: ['N/A'] },
-		DataModelParadigm: { data: 'Relational' },
-	},
-	ClientSideData: {
-		QueryAPI: { data: ['Async'] },
-		PersistenceMechanism: { data: ['IndexedDB', 'OPFS'] },
-		PersistenceFeatures: { data: 'Indexes' },
-		DataModel: { data: 'Document' },
-		OfflineReads: { data: 'Full Support' },
-		OfflineWrites: { data: 'Local conflict resolution' },
-		DataSize: { data: 'Up to 5-10 MB per document' },
-	},
-	SynchronizationStrategy: {
-		FullOrPartialReplication: { data: ['Full Replication'] },
-		ConflictHandling: { data: 'Automatic via CRDT' },
-		WhereResolutionOccurs: { data: 'Client' },
-		WhatGetsSynced: {
-			data: {
-				ClientToClient: 'Ops',
-			},
-		},
-	},
+  Version: 1,
+  Id: 'instant',
+  Name: 'InstantDB',
+  Description: 'Instant is a modern Firebase. We make you productive by giving your frontend a real-time database.',
+  Website: 'https://instandb.com',
+  GitHub: 'https://github.com/instantdb/instant',
+  GetStarted: 'https://www.instantdb.com/tutorial',
+  Deployment: ['Self-hosted', 'Hosted'],
+  License: 'Apache',
+  MaturityLevel: 'Production-Ready',
+  AppTarget: {
+    Platform: {
+      data: ['Browser', 'Node', 'iOS', 'Android', 'Desktop'],
+      comment: 'iOS and Android support via React native. Desktop via Electron and Tauri',
+    },
+    LanguageSDK: { data: ['TypeScript', 'JavaScript'] },
+    FrameworkIntegrations: {
+      data: ['React', 'React Native']
+    },
+    ClientBundleSize: {
+      data: "~27kb gzipped"
+    },
+  },
+  Networking: {
+    Topology: { data: 'Client-Server' },
+    Protocol: {
+      data: ["WebSockets", "HTTP"]
+    },
+  },
+  ServerSideData: {
+    PersistenceMechanism: {
+      data: ['Postgres'],
+      comment: 'Support for bring your postgres coming'
+    },
+    DataModelParadigm: { data: 'Relational' },
+    SchemaManagement: {
+      data: ["Schema definition", "Validate schemas on write"]
+    },
+  },
+  ClientSideData: {
+    QueryAPI: { data: ['Async', 'Reactive queries'] },
+    LocalRefreshLatency: {
+      data: '~1ms',
+    },
+    PersistenceMechanism: { data: ['IndexedDB'] },
+    PersistenceFeatures: { data: 'Indexes, Transactions' },
+    DataModel: { data: 'Relational' },
+    OfflineReads: { data: 'Query Cache' },
+    OptimisticUpdates: { data: 'Yes' },
+    OfflineWrites: { data: 'Queued offline writes' },
+    DataSize: { data: 'Limited by device capabilities' },
+  },
+  SynchronizationStrategy: {
+    FullOrPartialReplication: { data: ['Partial Replication'], comment: "Use InstaQL queries to control which data is replicated" },
+    ConflictHandling: { data: 'Last write wins at attribute level' },
+    WhereResolutionOccurs: { data: 'Server' },
+    WhatGetsSynced: {
+      data: {
+        ClientToServer: 'Mutations',
+        ServerToClient: "Rows",
+      },
+      comment:
+        '"Mutations" are instant logical operations `update`, `delete`. "Rows" are data that the client side engine uses to fulfill queries'
+    },
+    Latency: {
+      data: "Close to network latency"
+    },
+    Throughput: {
+      data: "Hundreds of writes per second",
+      comment: "This is based on early 2025 usage."
+    },
+    Concurrency: {
+      data: "Effectively unlimited",
+      comment: "Server is horizontally scalable and shared-nothing. Running on top of Aurora. To see live connections go to instantdb.com"
+    },
+    Authority: {
+      data: "Centralized"
+    }
+  },
+  AuthIdentity: {
+    Encryption: { data: 'no' },
+    AuthenticationMethod: { data: ['JWT Tokens'] },
+    AuthorizationPermissions: { data: 'Custom', comment: "Permissions are defined using Instant's Rule Language which is builds on top of Google's CEL. For more details see: https://instantdb.com/docs/permissions" },
+  },
+  DevelopmentWorkflowsDX: {
+    CLI: {
+      data: 'Yes',
+    },
+    TypeSupport: {
+      data: 'Yes',
+    },
+    DebuggingTools: {
+      data: [
+        'DevTools',
+        'Data Inspector',
+        'Dashboard',
+      ]
+    }
+  }
 })
