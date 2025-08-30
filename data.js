@@ -6,7 +6,7 @@ export const data = LandscapeSchema.make({
   Id: 'instant',
   Name: 'InstantDB',
   Description: 'Instant is a modern Firebase. We make you productive by giving your frontend a real-time database.',
-  Website: 'https://instandb.com',
+  Website: 'https://instantdb.com',
   GitHub: 'https://github.com/instantdb/instant',
   GetStarted: 'https://www.instantdb.com/tutorial',
   Deployment: ['Self-hosted', 'Hosted'],
